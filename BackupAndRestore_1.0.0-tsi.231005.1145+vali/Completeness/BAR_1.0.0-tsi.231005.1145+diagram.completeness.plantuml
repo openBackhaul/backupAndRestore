@@ -1,0 +1,105 @@
+@startuml BAR_1.0.0-tsi.231005.1145+diagram.completeness
+skinparam responseMessageBelowArrow true
+
+title
+BackupAndRestore_1.0.0-tsi.231005.1145+testcase.completeness
+end title
+
+participant "Postman" as Postman
+participant "Data" as Data
+participant "Collection" as Collection
+
+participant "/backup-and-restore-pac" as BackupAndRestorePac
+
+participant "/backup-system" as BackupSystem
+participant "/restore-system" as RestoreSystem
+participant "/apply-restored-configuration" as ApplyRestoredConfiguration
+participant "/confirm-restoration" as ConfirmRestoration
+participant "/abort-backup-operation" as AbortBackupOperation
+participant "/abort-restore-operation" as AbortRestoreOperation
+participant "/roll-back-operation" as RollBackOperation
+
+group Preparation
+  Data --\\o Postman : {servers,\n   mountName,\n   kindOfReference,\n   suffixUrlEncodingIsRequired}
+  activate Postman
+  Postman --\\o Collection : {servers,\n   mountName,\n   kindOfReference,\n   suffixUrlEncodingIsRequired}
+end
+
+group /backup-and-restore-pac
+  Collection --\\o Postman : {mountName}
+  Postman -> BackupAndRestorePac : {mountName}
+  Postman <-- BackupAndRestorePac : {BackupAndRestorePac}
+  note right Postman
+    schema validation
+  end note
+  Postman --\\o Collection : {separateActivationIsRequired,\n confirmRestorationIsRequired}
+end
+
+group /backup-system
+  Collection --\\o Postman : {mountName}
+  Postman -> BackupSystem : {mountName, backupLocation}
+  Postman <-- BackupSystem : 204
+  note right Postman
+    204?
+  end note
+  Postman --\\o Collection : {backupLocation}
+end
+
+group /restore-system
+  Collection --\\o Postman : {mountName, backupLocation}
+  Postman -> RestoreSystem : {mountName, backupLocation}
+  Postman <-- RestoreSystem : 204
+  note right Postman
+    204?
+  end note
+  Postman --\\o Collection : {responseCodeRestoreOperation}
+end
+
+group /apply-restored-configuration
+  Collection --\\o Postman : {mountName,\n separateActivationIsRequired,\n responseCodeRestoreOperation}
+  Postman -> ApplyRestoredConfiguration : {mountName}
+  Postman <-- ApplyRestoredConfiguration  : 204
+  note right Postman
+    204?
+  end note
+end
+
+group /confirm-restoration
+  Collection --\\o Postman : {mountName,\n confirmRestorationIsRequired,\n responseCodeRestoreOperation}
+  Postman -> ConfirmRestoration : {mountName}
+  Postman <-- ConfirmRestoration : 204
+  note right Postman
+    204?
+  end note
+end
+
+group /abort-backup-operation
+  Collection --\\o Postman : {mountName}
+  Postman -> AbortBackupOperation : {mountName}
+  Postman <-- AbortBackupOperation : 204
+  note right Postman
+    204?
+  end note
+end
+
+group /abort-restore-operation
+  Collection --\\o Postman : {mountName}
+  Postman -> AbortRestoreOperation : {mountName}
+  Postman <-- AbortRestoreOperation : 204
+  note right Postman
+    204?
+  end note
+end
+
+group /roll-back-operation
+  Collection --\\o Postman : {mountName,\n responseCodeRestoreOperation}
+  Postman -> RollBackOperation : {mountName}
+  Postman <-- RollBackOperation : 204
+  note right Postman
+    204?
+  end note
+end
+
+deactivate Postman
+
+@enduml

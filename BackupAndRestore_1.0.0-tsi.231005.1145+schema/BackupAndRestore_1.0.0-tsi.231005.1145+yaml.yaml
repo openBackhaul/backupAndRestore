@@ -1,0 +1,82 @@
+/backup-and-restore-1-0:backup-and-restore-pac:
+  type: object
+  required:
+    - backup-and-restore-1-0:backup-and-restore-pac
+  properties:
+    backup-and-restore-1-0:backup-and-restore-pac:
+      type: object
+      required:
+        - backup-and-restore-capability
+        - backup-and-restore-configuration
+        - backup-and-restore-status
+      properties:
+        backup-and-restore-capability:
+          type: object
+          required:
+            - separate-activation-is-required
+            - confirm-restoration-is-required
+          properties:
+            separate-activation-is-required:
+              type: boolean
+            confirm-restoration-is-required:
+              type: boolean
+        backup-and-restore-configuration:
+          type: object
+          required:
+            - length-of-confirmation-period
+            - length-of-validation-period
+          properties:
+            length-of-confirmation-period:
+              type: integer
+              format: int16
+            length-of-validation-period:
+              type: integer
+              format: int16
+        backup-and-restore-status:
+          type: object
+          required:
+            - backup-operation-status
+            - restore-operation-status
+            - ready-for-starting-new-operation
+          properties:
+            backup-operation-status:
+              type: string
+              enum:
+                - 'backup-and-restore-1-0:BACKUP_STATUS_TYPE_IDLE'
+                - 'backup-and-restore-1-0:BACKUP_STATUS_TYPE_ONGOING'
+                - 'backup-and-restore-1-0:BACKUP_STATUS_TYPE_COMPLETED'
+                - 'backup-and-restore-1-0:BACKUP_STATUS_TYPE_FAILED'
+                - 'backup-and-restore-1-0:BACKUP_STATUS_TYPE_ABORTING'
+                - 'backup-and-restore-1-0:BACKUP_STATUS_TYPE_NOT_YET_DEFINED'
+            restore-operation-status:
+              type: string
+              enum:
+                - 'backup-and-restore-1-0:RESTORE_STATUS_TYPE_IDLE'
+                - 'backup-and-restore-1-0:RESTORE_STATUS_TYPE_DOWNLOADING'
+                - 'backup-and-restore-1-0:RESTORE_STATUS_TYPE_DOWNLOADED'
+                - 'backup-and-restore-1-0:RESTORE_STATUS_TYPE_RESTARTING'
+                - 'backup-and-restore-1-0:RESTORE_STATUS_TYPE_WAITING_FOR_CONFIRMATION'
+                - 'backup-and-restore-1-0:RESTORE_STATUS_TYPE_COMPLETED'
+                - 'backup-and-restore-1-0:RESTORE_STATUS_TYPE_FAILED'
+                - 'backup-and-restore-1-0:RESTORE_STATUS_TYPE_ABORTING'
+                - 'backup-and-restore-1-0:RESTORE_STATUS_TYPE_NOT_YET_DEFINED'
+            ready-for-starting-new-operation:
+              type: string
+              enum:
+                - 'backup-and-restore-1-0:READINESS_STATUS_TYPE_READY'
+                - 'backup-and-restore-1-0:READINESS_STATUS_TYPE_NOT_READY'
+                - 'backup-and-restore-1-0:READINESS_STATUS_TYPE_NOT_YET_DEFINED'
+
+/backup-and-restore-1-0:backup-system:
+
+/backup-and-restore-1-0:restore-system:
+
+/backup-and-restore-1-0:apply-restored-configuration:
+
+/backup-and-restore-1-0:confirm-restoration:
+
+/backup-and-restore-1-0:abort-backup-operation:
+
+/backup-and-restore-1-0:abort-restore-operation:
+
+/backup-and-restore-1-0:roll-back-operation:

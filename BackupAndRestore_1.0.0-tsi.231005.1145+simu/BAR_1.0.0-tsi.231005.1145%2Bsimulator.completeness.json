@@ -1,0 +1,1786 @@
+{
+  "uuid": "16a687b4-63f7-4141-89bc-7fc546049e09",
+  "lastMigration": 32,
+  "name": "BAR_1.0.0-tsi.231005.1145+simulator.completeness",
+  "endpointPrefix": "",
+  "latency": 0,
+  "port": 3002,
+  "hostname": "",
+  "folders": [],
+  "routes": [
+    {
+      "uuid": "a0884f23-5cfe-41d9-884b-93421894aeb4",
+      "type": "http",
+      "documentation": "Provides BackupAndRestorePac from cache",
+      "method": "get",
+      "endpoint": "core-model-1-4:network-control-domain=cache/control-construct=305250001/backup-and-restore-1-0:backup-and-restore-pac",
+      "responses": [
+        {
+          "uuid": "f55592fb-5e6f-48ae-9dfc-b00bfcfaba89",
+          "body": "{\n  \"backup-and-restore-1-0:backup-and-restore-pac\": {\n    \"backup-and-restore-capability\": {\n      \"separate-activation-is-required\": true,\n      \"confirm-restoration-is-required\": true\n    },\n    \"backup-and-restore-configuration\": {\n      \"length-of-confirmation-period\": 60,\n      \"length-of-validation-period\": 30\n    },\n    \"backup-and-restore-status\": {\n      \"backup-operation-status\": \"backup-and-restore-1-0:BACKUP_STATUS_TYPE_IDLE\",\n      \"restore-operation-status\": \"backup-and-restore-1-0:RESTORE_STATUS_TYPE_IDLE\",\n      \"ready-for-starting-new-operation\": \"backup-and-restore-1-0:READINESS_STATUS_TYPE_READY\"\n    }\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "BackupAndRestorePac provided from cache",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "x-correlator",
+              "value": "550e8400-e29b-11d4-a716-446655440000"
+            },
+            {
+              "key": "exec-time",
+              "value": 1100
+            },
+            {
+              "key": "backend-time",
+              "value": 850
+            },
+            {
+              "key": "life-cycle-state",
+              "value": "{{oneOf (array 'EXPERIMENTAL' 'OPERATIONAL' 'DEPRECATED' 'OBSOLETE' 'UNKNOWN' 'NOT_YET_DEFINED')}}"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "46ba60c4-3471-4fe7-a6f2-2a0fb3bbd66f",
+      "type": "http",
+      "documentation": "Uploads a backup file",
+      "method": "post",
+      "endpoint": "core-model-1-4:network-control-domain=live/control-construct=305250001/backup-and-restore-1-0%3Abackup-system",
+      "responses": [
+        {
+          "uuid": "1126754e-2cf4-4a57-99c1-a737ab1a7772",
+          "body": "",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "Backup file uploaded",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "x-correlator",
+              "value": "550e8400-e29b-11d4-a716-446655440000"
+            },
+            {
+              "key": "exec-time",
+              "value": 1100
+            },
+            {
+              "key": "backend-time",
+              "value": 850
+            },
+            {
+              "key": "life-cycle-state",
+              "value": "{{oneOf (array 'EXPERIMENTAL' 'OPERATIONAL' 'DEPRECATED' 'OBSOLETE' 'UNKNOWN' 'NOT_YET_DEFINED')}}"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "10cb9aaa-7b59-4a1c-b3fd-d6fdc8df4795",
+      "type": "http",
+      "documentation": "Downloads a backup file",
+      "method": "post",
+      "endpoint": "core-model-1-4:network-control-domain=live/control-construct=305250001/backup-and-restore-1-0%3Arestore-system",
+      "responses": [
+        {
+          "uuid": "0b66c124-2778-4d32-b2b6-869a2d3ec8d9",
+          "body": "",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "Backup file downloaded",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "x-correlator",
+              "value": "550e8400-e29b-11d4-a716-446655440000"
+            },
+            {
+              "key": "exec-time",
+              "value": 1100
+            },
+            {
+              "key": "backend-time",
+              "value": 850
+            },
+            {
+              "key": "life-cycle-state",
+              "value": "{{oneOf (array 'EXPERIMENTAL' 'OPERATIONAL' 'DEPRECATED' 'OBSOLETE' 'UNKNOWN' 'NOT_YET_DEFINED')}}"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "6a9e93df-6c28-4627-a039-ad1515525f68",
+      "type": "http",
+      "documentation": "Activates restored configuration",
+      "method": "post",
+      "endpoint": "core-model-1-4:network-control-domain=live/control-construct=305250001/backup-and-restore-1-0%3Aapply-restored-configuration",
+      "responses": [
+        {
+          "uuid": "24e72c7a-5ea3-43af-b105-8b17ff12a163",
+          "body": "",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "Restored configuration activated",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "x-correlator",
+              "value": "550e8400-e29b-11d4-a716-446655440000"
+            },
+            {
+              "key": "exec-time",
+              "value": 1100
+            },
+            {
+              "key": "backend-time",
+              "value": 850
+            },
+            {
+              "key": "life-cycle-state",
+              "value": "{{oneOf (array 'EXPERIMENTAL' 'OPERATIONAL' 'DEPRECATED' 'OBSOLETE' 'UNKNOWN' 'NOT_YET_DEFINED')}}"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "081a4470-a3d8-4956-9b9c-729599351b5e",
+      "type": "http",
+      "documentation": "Confirms Restoration",
+      "method": "post",
+      "endpoint": "core-model-1-4:network-control-domain=live/control-construct=305250001/backup-and-restore-1-0%3Aconfirm-restoration",
+      "responses": [
+        {
+          "uuid": "d447f14a-c211-439c-8261-0a261cbe4498",
+          "body": "",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "Restoration confirmed",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "x-correlator",
+              "value": "550e8400-e29b-11d4-a716-446655440000"
+            },
+            {
+              "key": "exec-time",
+              "value": 1100
+            },
+            {
+              "key": "backend-time",
+              "value": 850
+            },
+            {
+              "key": "life-cycle-state",
+              "value": "{{oneOf (array 'EXPERIMENTAL' 'OPERATIONAL' 'DEPRECATED' 'OBSOLETE' 'UNKNOWN' 'NOT_YET_DEFINED')}}"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "1bcc6134-7652-4c00-b0e6-aa74e2138aff",
+      "type": "http",
+      "documentation": "Aborts backup",
+      "method": "post",
+      "endpoint": "core-model-1-4:network-control-domain=live/control-construct=305250001/backup-and-restore-1-0%3Aabort-backup-operation",
+      "responses": [
+        {
+          "uuid": "6df7668d-d2cb-437a-b570-a5fa1093b1c5",
+          "body": "",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "Backup aborted",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "x-correlator",
+              "value": "550e8400-e29b-11d4-a716-446655440000"
+            },
+            {
+              "key": "exec-time",
+              "value": 1100
+            },
+            {
+              "key": "backend-time",
+              "value": 850
+            },
+            {
+              "key": "life-cycle-state",
+              "value": "{{oneOf (array 'EXPERIMENTAL' 'OPERATIONAL' 'DEPRECATED' 'OBSOLETE' 'UNKNOWN' 'NOT_YET_DEFINED')}}"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "4e1350da-627f-4dc1-bc7e-55f8f88543f5",
+      "type": "http",
+      "documentation": "Aborts Restoration",
+      "method": "post",
+      "endpoint": "core-model-1-4:network-control-domain=live/control-construct=305250001/backup-and-restore-1-0%3Aabort-restore-operation",
+      "responses": [
+        {
+          "uuid": "9b65690c-ac24-4912-b865-92b2efc3f45e",
+          "body": "",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "Restoration aborted",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "x-correlator",
+              "value": "550e8400-e29b-11d4-a716-446655440000"
+            },
+            {
+              "key": "exec-time",
+              "value": 1100
+            },
+            {
+              "key": "backend-time",
+              "value": 850
+            },
+            {
+              "key": "life-cycle-state",
+              "value": "{{oneOf (array 'EXPERIMENTAL' 'OPERATIONAL' 'DEPRECATED' 'OBSOLETE' 'UNKNOWN' 'NOT_YET_DEFINED')}}"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "b07ecf4d-91b2-48a9-8f69-bd53e045b674",
+      "type": "http",
+      "documentation": "Roll back of entire restoration",
+      "method": "post",
+      "endpoint": "core-model-1-4:network-control-domain=live/control-construct=305250001/backup-and-restore-1-0%3Aroll-back-operation",
+      "responses": [
+        {
+          "uuid": "4810e9b1-61c6-4785-b118-a32c89b4cd49",
+          "body": "",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "Restoration rolled back",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "x-correlator",
+              "value": "550e8400-e29b-11d4-a716-446655440000"
+            },
+            {
+              "key": "exec-time",
+              "value": 1100
+            },
+            {
+              "key": "backend-time",
+              "value": 850
+            },
+            {
+              "key": "life-cycle-state",
+              "value": "{{oneOf (array 'EXPERIMENTAL' 'OPERATIONAL' 'DEPRECATED' 'OBSOLETE' 'UNKNOWN' 'NOT_YET_DEFINED')}}"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "e8029f7a-3a8d-470c-aeee-d0372af9c8c2",
+      "type": "http",
+      "documentation": "Provides BackupAndRestorePac from device",
+      "method": "get",
+      "endpoint": "rests/data/network-topology:network-topology/topology=topology-netconf/node=305250001/yang-ext:mount/core-model-1-4:control-construct/backup-and-restore-1-0:backup-and-restore-pac",
+      "responses": [
+        {
+          "uuid": "21d42216-369c-4dbd-900e-70d0d7bc3666",
+          "body": "{\n  \"backup-and-restore-1-0:backup-and-restore-pac\": {\n    \"backup-and-restore-capability\": {\n      \"separate-activation-is-required\": true,\n      \"confirm-restoration-is-required\": true\n    },\n    \"backup-and-restore-configuration\": {\n      \"length-of-confirmation-period\": 60,\n      \"length-of-validation-period\": 30\n    },\n    \"backup-and-restore-status\": {\n      \"backup-operation-status\": \"backup-and-restore-1-0:BACKUP_STATUS_TYPE_IDLE\",\n      \"restore-operation-status\": \"backup-and-restore-1-0:RESTORE_STATUS_TYPE_IDLE\",\n      \"ready-for-starting-new-operation\": \"backup-and-restore-1-0:READINESS_STATUS_TYPE_READY\"\n    }\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "BackupAndRestorePac provided from device",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "1e33dd98-6331-40ed-9e66-048455261990",
+      "type": "http",
+      "documentation": "Uploads a backup file",
+      "method": "post",
+      "endpoint": "rests/operations/network-topology:network-topology/topology=topology-netconf/node=305250001/yang-ext:mount/backup-and-restore-1-0%3Abackup-system",
+      "responses": [
+        {
+          "uuid": "02cb5940-852b-4f0a-a2e8-92c854c087e2",
+          "body": "",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "Backup file uploaded",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "c07bc7d8-05a9-4d6f-b5fe-b7a8a7786757",
+      "type": "http",
+      "documentation": "Downloads a backup file",
+      "method": "post",
+      "endpoint": "rests/operations/network-topology:network-topology/topology=topology-netconf/node=305250001/yang-ext:mount/backup-and-restore-1-0%3Arestore-system",
+      "responses": [
+        {
+          "uuid": "ff68b398-494e-4c2e-87a1-efe23276c4b0",
+          "body": "",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "Backup file downloaded",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "3e76e09e-dd1d-4b5d-9acc-ddda5f929e17",
+      "type": "http",
+      "documentation": "Activates restored configuration",
+      "method": "post",
+      "endpoint": "rests/operations/network-topology:network-topology/topology=topology-netconf/node=305250001/yang-ext:mount/backup-and-restore-1-0%3Aapply-restored-configuration",
+      "responses": [
+        {
+          "uuid": "0e18f514-75e2-42cd-be62-7bc2cf8fd770",
+          "body": "",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "Restored configuration activated",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "dc288cce-841e-467e-a509-0f1009b1d40c",
+      "type": "http",
+      "documentation": "Confirms Restoration",
+      "method": "post",
+      "endpoint": "rests/operations/network-topology:network-topology/topology=topology-netconf/node=305250001/yang-ext:mount/backup-and-restore-1-0%3Aconfirm-restoration",
+      "responses": [
+        {
+          "uuid": "fc9a3e99-a781-4aec-9750-c3447f287553",
+          "body": "",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "Restoration confirmed",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "47770f7d-65a8-40ce-a447-f3a2b43d8ff6",
+      "type": "http",
+      "documentation": "Aborts backup",
+      "method": "post",
+      "endpoint": "rests/operations/network-topology:network-topology/topology=topology-netconf/node=305250001/yang-ext:mount/backup-and-restore-1-0%3Aabort-backup-operation",
+      "responses": [
+        {
+          "uuid": "663e158e-ea28-43b9-9009-56f07eed0976",
+          "body": "",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "Backup aborted",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "210cf106-50c9-4f07-b1c3-08b3bec5ec69",
+      "type": "http",
+      "documentation": "Aborts Restoration",
+      "method": "post",
+      "endpoint": "rests/operations/network-topology:network-topology/topology=topology-netconf/node=305250001/yang-ext:mount/backup-and-restore-1-0%3Aabort-restore-operation",
+      "responses": [
+        {
+          "uuid": "1c45e760-1825-4ab6-a85e-80a0a5a7d344",
+          "body": "",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "Restoration aborted",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "f3f67225-9bbb-45fe-ad14-43e340b9253b",
+      "type": "http",
+      "documentation": "Roll back of entire restoration",
+      "method": "post",
+      "endpoint": "rests/operations/network-topology:network-topology/topology=topology-netconf/node=305250001/yang-ext:mount/backup-and-restore-1-0%3Aroll-back-operation",
+      "responses": [
+        {
+          "uuid": "deff787b-cb82-4cc1-9a2c-1bc3df2c167c",
+          "body": "",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "Restoration rolled back",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "0e3d87e3-6166-4d71-8b37-5b52252c3b0e",
+      "type": "http",
+      "documentation": "Provides BackupAndRestorePac from cache",
+      "method": "get",
+      "endpoint": "generic/core-model-1-4:network-control-domain=cache/control-construct=:mountName/backup-and-restore-1-0:backup-and-restore-pac",
+      "responses": [
+        {
+          "uuid": "81788b94-8a0f-455f-843f-21033759a9af",
+          "body": "{\n  \"backup-and-restore-1-0:backup-and-restore-pac\": {\n    \"backup-and-restore-capability\": {\n      \"separate-activation-is-required\": {{faker 'datatype.boolean'}},\n      \"confirm-restoration-is-required\": {{faker 'datatype.boolean'}}\n    },\n    \"backup-and-restore-configuration\": {\n      \"length-of-confirmation-period\": {{faker 'number.int' max=99999}},\n      \"length-of-validation-period\": {{faker 'number.int' max=99999}}\n    },\n    \"backup-and-restore-status\": {\n      \"backup-operation-status\": \"{{oneOf (array 'backup-and-restore-1-0:BACKUP_STATUS_TYPE_IDLE' 'backup-and-restore-1-0:BACKUP_STATUS_TYPE_ONGOING' 'backup-and-restore-1-0:BACKUP_STATUS_TYPE_COMPLETED' 'backup-and-restore-1-0:BACKUP_STATUS_TYPE_FAILED' 'backup-and-restore-1-0:BACKUP_STATUS_TYPE_ABORTING' 'backup-and-restore-1-0:BACKUP_STATUS_TYPE_NOT_YET_DEFINED')}}\",\n      \"restore-operation-status\": \"{{oneOf (array 'backup-and-restore-1-0:RESTORE_STATUS_TYPE_IDLE' 'backup-and-restore-1-0:RESTORE_STATUS_TYPE_DOWNLOADING' 'backup-and-restore-1-0:RESTORE_STATUS_TYPE_DOWNLOADED' 'backup-and-restore-1-0:RESTORE_STATUS_TYPE_RESTARTING' 'backup-and-restore-1-0:RESTORE_STATUS_TYPE_WAITING_FOR_CONFIRMATION' 'backup-and-restore-1-0:RESTORE_STATUS_TYPE_COMPLETED' 'backup-and-restore-1-0:RESTORE_STATUS_TYPE_FAILED' 'backup-and-restore-1-0:RESTORE_STATUS_TYPE_ABORTING' 'backup-and-restore-1-0:RESTORE_STATUS_TYPE_NOT_YET_DEFINED')}}\",\n      \"ready-for-starting-new-operation\": \"{{oneOf (array 'backup-and-restore-1-0:READINESS_STATUS_TYPE_READY' 'backup-and-restore-1-0:READINESS_STATUS_TYPE_NOT_READY' 'backup-and-restore-1-0:READINESS_STATUS_TYPE_NOT_YET_DEFINED')}}\"\n    }\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "BackupAndRestorePac provided from cache",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "x-correlator",
+              "value": "550e8400-e29b-11d4-a716-446655440000"
+            },
+            {
+              "key": "exec-time",
+              "value": 1100
+            },
+            {
+              "key": "backend-time",
+              "value": 850
+            },
+            {
+              "key": "life-cycle-state",
+              "value": "{{oneOf (array 'EXPERIMENTAL' 'OPERATIONAL' 'DEPRECATED' 'OBSOLETE' 'UNKNOWN' 'NOT_YET_DEFINED')}}"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "ae12693e-995e-49ef-9d55-1e73ac2aa2c3",
+          "body": "{\n  \"code\": {{faker 'number.int' max=99999}},\n  \"message\": \"\"\n}",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "Response in case of errored service requests",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "x-correlator",
+              "value": "550e8400-e29b-11d4-a716-446655440000"
+            },
+            {
+              "key": "exec-time",
+              "value": 1100
+            },
+            {
+              "key": "backend-time",
+              "value": 850
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "7723cec9-b06a-4107-b357-852620b47378",
+          "body": "{\n  \"code\": {{faker 'number.int' max=99999}},\n  \"message\": \"\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Response in case of errored service requests",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "x-correlator",
+              "value": "550e8400-e29b-11d4-a716-446655440000"
+            },
+            {
+              "key": "exec-time",
+              "value": 1100
+            },
+            {
+              "key": "backend-time",
+              "value": 850
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "2cd61a24-ce7f-4230-bf30-285a5c81eb48",
+      "type": "http",
+      "documentation": "Uploads a backup file",
+      "method": "post",
+      "endpoint": "generic/core-model-1-4:network-control-domain=live/control-construct=:mountName/backup-and-restore-1-0:backup-system",
+      "responses": [
+        {
+          "uuid": "1b6a4059-ab9e-46bf-abf9-908a25a2e4bd",
+          "body": "",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "Backup file uploaded",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "x-correlator",
+              "value": "550e8400-e29b-11d4-a716-446655440000"
+            },
+            {
+              "key": "exec-time",
+              "value": 1100
+            },
+            {
+              "key": "backend-time",
+              "value": 850
+            },
+            {
+              "key": "life-cycle-state",
+              "value": "{{oneOf (array 'EXPERIMENTAL' 'OPERATIONAL' 'DEPRECATED' 'OBSOLETE' 'UNKNOWN' 'NOT_YET_DEFINED')}}"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "537d7539-fd38-47af-9681-2f61c68a2790",
+          "body": "{\n  \"code\": {{faker 'number.int' max=99999}},\n  \"message\": \"\"\n}",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "Response in case of errored service requests",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "x-correlator",
+              "value": "550e8400-e29b-11d4-a716-446655440000"
+            },
+            {
+              "key": "exec-time",
+              "value": 1100
+            },
+            {
+              "key": "backend-time",
+              "value": 850
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "c296b332-3f1e-4949-b182-f029361fb7a5",
+          "body": "{\n  \"code\": {{faker 'number.int' max=99999}},\n  \"message\": \"\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Response in case of errored service requests",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "x-correlator",
+              "value": "550e8400-e29b-11d4-a716-446655440000"
+            },
+            {
+              "key": "exec-time",
+              "value": 1100
+            },
+            {
+              "key": "backend-time",
+              "value": 850
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "09ab9041-c51f-4b52-a14c-0c4b1fa2db74",
+      "type": "http",
+      "documentation": "Downloads a backup file",
+      "method": "post",
+      "endpoint": "generic/core-model-1-4:network-control-domain=live/control-construct=:mountName/backup-and-restore-1-0:restore-system",
+      "responses": [
+        {
+          "uuid": "1c36b37f-4aa8-4db2-8859-686f954f4cc4",
+          "body": "",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "Backup file downloaded",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "x-correlator",
+              "value": "550e8400-e29b-11d4-a716-446655440000"
+            },
+            {
+              "key": "exec-time",
+              "value": 1100
+            },
+            {
+              "key": "backend-time",
+              "value": 850
+            },
+            {
+              "key": "life-cycle-state",
+              "value": "{{oneOf (array 'EXPERIMENTAL' 'OPERATIONAL' 'DEPRECATED' 'OBSOLETE' 'UNKNOWN' 'NOT_YET_DEFINED')}}"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "c633b0c5-b76e-4416-af36-fb868f0e50e0",
+          "body": "{\n  \"code\": {{faker 'number.int' max=99999}},\n  \"message\": \"\"\n}",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "Response in case of errored service requests",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "x-correlator",
+              "value": "550e8400-e29b-11d4-a716-446655440000"
+            },
+            {
+              "key": "exec-time",
+              "value": 1100
+            },
+            {
+              "key": "backend-time",
+              "value": 850
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "0161f241-2f28-475c-97b0-a74607d903ab",
+          "body": "{\n  \"code\": {{faker 'number.int' max=99999}},\n  \"message\": \"\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Response in case of errored service requests",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "x-correlator",
+              "value": "550e8400-e29b-11d4-a716-446655440000"
+            },
+            {
+              "key": "exec-time",
+              "value": 1100
+            },
+            {
+              "key": "backend-time",
+              "value": 850
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "8d85abd8-b8e0-498b-8c52-932166bfb792",
+      "type": "http",
+      "documentation": "Activates restored configuration",
+      "method": "post",
+      "endpoint": "generic/core-model-1-4:network-control-domain=live/control-construct=:mountName/backup-and-restore-1-0:apply-restored-configuration",
+      "responses": [
+        {
+          "uuid": "808e1cb7-638d-485b-961d-dc51662bd12e",
+          "body": "",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "Restored configuration activated",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "x-correlator",
+              "value": "550e8400-e29b-11d4-a716-446655440000"
+            },
+            {
+              "key": "exec-time",
+              "value": 1100
+            },
+            {
+              "key": "backend-time",
+              "value": 850
+            },
+            {
+              "key": "life-cycle-state",
+              "value": "{{oneOf (array 'EXPERIMENTAL' 'OPERATIONAL' 'DEPRECATED' 'OBSOLETE' 'UNKNOWN' 'NOT_YET_DEFINED')}}"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "2a36ae19-a26a-408b-9926-1f68874792a2",
+          "body": "{\n  \"code\": {{faker 'number.int' max=99999}},\n  \"message\": \"\"\n}",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "Response in case of errored service requests",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "x-correlator",
+              "value": "550e8400-e29b-11d4-a716-446655440000"
+            },
+            {
+              "key": "exec-time",
+              "value": 1100
+            },
+            {
+              "key": "backend-time",
+              "value": 850
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "34b7f260-5d2f-45e9-b56b-dc8eb2a0aecc",
+          "body": "{\n  \"code\": {{faker 'number.int' max=99999}},\n  \"message\": \"\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Response in case of errored service requests",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "x-correlator",
+              "value": "550e8400-e29b-11d4-a716-446655440000"
+            },
+            {
+              "key": "exec-time",
+              "value": 1100
+            },
+            {
+              "key": "backend-time",
+              "value": 850
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "4fdc9b93-5aa2-4d61-8296-66a0282aa7b4",
+      "type": "http",
+      "documentation": "Confirms Restoration",
+      "method": "post",
+      "endpoint": "generic/core-model-1-4:network-control-domain=live/control-construct=:mountName/backup-and-restore-1-0:confirm-restoration",
+      "responses": [
+        {
+          "uuid": "b4cb48af-5fcf-4188-b934-48c3550cb8ae",
+          "body": "",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "Restoration confirmed",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "x-correlator",
+              "value": "550e8400-e29b-11d4-a716-446655440000"
+            },
+            {
+              "key": "exec-time",
+              "value": 1100
+            },
+            {
+              "key": "backend-time",
+              "value": 850
+            },
+            {
+              "key": "life-cycle-state",
+              "value": "{{oneOf (array 'EXPERIMENTAL' 'OPERATIONAL' 'DEPRECATED' 'OBSOLETE' 'UNKNOWN' 'NOT_YET_DEFINED')}}"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "dadb2425-f17d-4503-b982-454317759b71",
+          "body": "{\n  \"code\": {{faker 'number.int' max=99999}},\n  \"message\": \"\"\n}",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "Response in case of errored service requests",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "x-correlator",
+              "value": "550e8400-e29b-11d4-a716-446655440000"
+            },
+            {
+              "key": "exec-time",
+              "value": 1100
+            },
+            {
+              "key": "backend-time",
+              "value": 850
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "d02a818a-49a3-4cc6-868c-566a87a5e4cd",
+          "body": "{\n  \"code\": {{faker 'number.int' max=99999}},\n  \"message\": \"\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Response in case of errored service requests",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "x-correlator",
+              "value": "550e8400-e29b-11d4-a716-446655440000"
+            },
+            {
+              "key": "exec-time",
+              "value": 1100
+            },
+            {
+              "key": "backend-time",
+              "value": 850
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "c3c1fcdf-6b03-4aa8-a024-c4acfb4ef13c",
+      "type": "http",
+      "documentation": "Aborts backup",
+      "method": "post",
+      "endpoint": "generic/core-model-1-4:network-control-domain=live/control-construct=:mountName/backup-and-restore-1-0:abort-backup-operation",
+      "responses": [
+        {
+          "uuid": "b2e94a59-8684-433e-9805-cde98a166422",
+          "body": "",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "Backup aborted",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "x-correlator",
+              "value": "550e8400-e29b-11d4-a716-446655440000"
+            },
+            {
+              "key": "exec-time",
+              "value": 1100
+            },
+            {
+              "key": "backend-time",
+              "value": 850
+            },
+            {
+              "key": "life-cycle-state",
+              "value": "{{oneOf (array 'EXPERIMENTAL' 'OPERATIONAL' 'DEPRECATED' 'OBSOLETE' 'UNKNOWN' 'NOT_YET_DEFINED')}}"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "a5720e44-b0aa-4cd2-bc0e-e5ac2118773a",
+          "body": "{\n  \"code\": {{faker 'number.int' max=99999}},\n  \"message\": \"\"\n}",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "Response in case of errored service requests",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "x-correlator",
+              "value": "550e8400-e29b-11d4-a716-446655440000"
+            },
+            {
+              "key": "exec-time",
+              "value": 1100
+            },
+            {
+              "key": "backend-time",
+              "value": 850
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "c37e3f05-944b-438f-a79b-9b88e2ab47cc",
+          "body": "{\n  \"code\": {{faker 'number.int' max=99999}},\n  \"message\": \"\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Response in case of errored service requests",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "x-correlator",
+              "value": "550e8400-e29b-11d4-a716-446655440000"
+            },
+            {
+              "key": "exec-time",
+              "value": 1100
+            },
+            {
+              "key": "backend-time",
+              "value": 850
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "a9d7fb28-6b13-4372-8352-8e7dae78a0c9",
+      "type": "http",
+      "documentation": "Aborts Restoration",
+      "method": "post",
+      "endpoint": "generic/core-model-1-4:network-control-domain=live/control-construct=:mountName/backup-and-restore-1-0:abort-restore-operation",
+      "responses": [
+        {
+          "uuid": "a3bfcc22-8539-443f-bbb4-37e3a86eab05",
+          "body": "",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "Restoration aborted",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "x-correlator",
+              "value": "550e8400-e29b-11d4-a716-446655440000"
+            },
+            {
+              "key": "exec-time",
+              "value": 1100
+            },
+            {
+              "key": "backend-time",
+              "value": 850
+            },
+            {
+              "key": "life-cycle-state",
+              "value": "{{oneOf (array 'EXPERIMENTAL' 'OPERATIONAL' 'DEPRECATED' 'OBSOLETE' 'UNKNOWN' 'NOT_YET_DEFINED')}}"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "f51a0fcf-ed69-434d-ba46-5211f8c83962",
+          "body": "{\n  \"code\": {{faker 'number.int' max=99999}},\n  \"message\": \"\"\n}",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "Response in case of errored service requests",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "x-correlator",
+              "value": "550e8400-e29b-11d4-a716-446655440000"
+            },
+            {
+              "key": "exec-time",
+              "value": 1100
+            },
+            {
+              "key": "backend-time",
+              "value": 850
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "dcc148ad-5216-4f0b-8f62-5b44a9d7d192",
+          "body": "{\n  \"code\": {{faker 'number.int' max=99999}},\n  \"message\": \"\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Response in case of errored service requests",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "x-correlator",
+              "value": "550e8400-e29b-11d4-a716-446655440000"
+            },
+            {
+              "key": "exec-time",
+              "value": 1100
+            },
+            {
+              "key": "backend-time",
+              "value": 850
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    },
+    {
+      "uuid": "2daf4634-3f3a-4c48-9241-cf51c6275335",
+      "type": "http",
+      "documentation": "Roll back of entire restoration",
+      "method": "post",
+      "endpoint": "generic/core-model-1-4:network-control-domain=live/control-construct=:mountName/backup-and-restore-1-0:roll-back-operation",
+      "responses": [
+        {
+          "uuid": "c66be156-ea21-44ef-a554-557d8f38ce33",
+          "body": "",
+          "latency": 0,
+          "statusCode": 204,
+          "label": "Restoration rolled back",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "x-correlator",
+              "value": "550e8400-e29b-11d4-a716-446655440000"
+            },
+            {
+              "key": "exec-time",
+              "value": 1100
+            },
+            {
+              "key": "backend-time",
+              "value": 850
+            },
+            {
+              "key": "life-cycle-state",
+              "value": "{{oneOf (array 'EXPERIMENTAL' 'OPERATIONAL' 'DEPRECATED' 'OBSOLETE' 'UNKNOWN' 'NOT_YET_DEFINED')}}"
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "53f72609-f796-4455-abf5-4a44588df739",
+          "body": "{\n  \"code\": {{faker 'number.int' max=99999}},\n  \"message\": \"\"\n}",
+          "latency": 0,
+          "statusCode": 500,
+          "label": "Response in case of errored service requests",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "x-correlator",
+              "value": "550e8400-e29b-11d4-a716-446655440000"
+            },
+            {
+              "key": "exec-time",
+              "value": 1100
+            },
+            {
+              "key": "backend-time",
+              "value": 850
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        },
+        {
+          "uuid": "7baf270c-9236-467d-a505-f1950934a01d",
+          "body": "{\n  \"code\": {{faker 'number.int' max=99999}},\n  \"message\": \"\"\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "Response in case of errored service requests",
+          "headers": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "key": "x-correlator",
+              "value": "550e8400-e29b-11d4-a716-446655440000"
+            },
+            {
+              "key": "exec-time",
+              "value": 1100
+            },
+            {
+              "key": "backend-time",
+              "value": 850
+            }
+          ],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false,
+          "crudKey": "id",
+          "callbacks": []
+        }
+      ],
+      "responseMode": null
+    }
+  ],
+  "rootChildren": [
+    {
+      "type": "route",
+      "uuid": "a0884f23-5cfe-41d9-884b-93421894aeb4"
+    },
+    {
+      "type": "route",
+      "uuid": "46ba60c4-3471-4fe7-a6f2-2a0fb3bbd66f"
+    },
+    {
+      "type": "route",
+      "uuid": "10cb9aaa-7b59-4a1c-b3fd-d6fdc8df4795"
+    },
+    {
+      "type": "route",
+      "uuid": "6a9e93df-6c28-4627-a039-ad1515525f68"
+    },
+    {
+      "type": "route",
+      "uuid": "081a4470-a3d8-4956-9b9c-729599351b5e"
+    },
+    {
+      "type": "route",
+      "uuid": "1bcc6134-7652-4c00-b0e6-aa74e2138aff"
+    },
+    {
+      "type": "route",
+      "uuid": "4e1350da-627f-4dc1-bc7e-55f8f88543f5"
+    },
+    {
+      "type": "route",
+      "uuid": "b07ecf4d-91b2-48a9-8f69-bd53e045b674"
+    },
+    {
+      "type": "route",
+      "uuid": "e8029f7a-3a8d-470c-aeee-d0372af9c8c2"
+    },
+    {
+      "type": "route",
+      "uuid": "1e33dd98-6331-40ed-9e66-048455261990"
+    },
+    {
+      "type": "route",
+      "uuid": "c07bc7d8-05a9-4d6f-b5fe-b7a8a7786757"
+    },
+    {
+      "type": "route",
+      "uuid": "3e76e09e-dd1d-4b5d-9acc-ddda5f929e17"
+    },
+    {
+      "type": "route",
+      "uuid": "dc288cce-841e-467e-a509-0f1009b1d40c"
+    },
+    {
+      "type": "route",
+      "uuid": "47770f7d-65a8-40ce-a447-f3a2b43d8ff6"
+    },
+    {
+      "type": "route",
+      "uuid": "210cf106-50c9-4f07-b1c3-08b3bec5ec69"
+    },
+    {
+      "type": "route",
+      "uuid": "f3f67225-9bbb-45fe-ad14-43e340b9253b"
+    },
+    {
+      "type": "route",
+      "uuid": "0e3d87e3-6166-4d71-8b37-5b52252c3b0e"
+    },
+    {
+      "type": "route",
+      "uuid": "2cd61a24-ce7f-4230-bf30-285a5c81eb48"
+    },
+    {
+      "type": "route",
+      "uuid": "09ab9041-c51f-4b52-a14c-0c4b1fa2db74"
+    },
+    {
+      "type": "route",
+      "uuid": "8d85abd8-b8e0-498b-8c52-932166bfb792"
+    },
+    {
+      "type": "route",
+      "uuid": "4fdc9b93-5aa2-4d61-8296-66a0282aa7b4"
+    },
+    {
+      "type": "route",
+      "uuid": "c3c1fcdf-6b03-4aa8-a024-c4acfb4ef13c"
+    },
+    {
+      "type": "route",
+      "uuid": "a9d7fb28-6b13-4372-8352-8e7dae78a0c9"
+    },
+    {
+      "type": "route",
+      "uuid": "2daf4634-3f3a-4c48-9241-cf51c6275335"
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "data": [],
+  "callbacks": []
+}

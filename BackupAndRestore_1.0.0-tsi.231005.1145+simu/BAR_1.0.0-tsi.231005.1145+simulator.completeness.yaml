@@ -1,0 +1,1119 @@
+openapi: 3.0.1
+info:
+  title: BAR_1.0.0-tsi.231005.1145+simulator.completeness
+  version: 1.0.0
+
+paths:
+########################################################################################################################
+#   BAR_1.0.0-tsi.231005.1145+validator.completeness in static reference mode
+########################################################################################################################
+#
+# At Application
+# ==============
+#
+# Completeness of GET 200
+  /core-model-1-4:network-control-domain=cache/control-construct=305250001/backup-and-restore-1-0:backup-and-restore-pac:
+    parameters:
+      - $ref: '#/components/parameters/user'
+      - $ref: '#/components/parameters/originator'
+      - $ref: '#/components/parameters/x-correlator'
+      - $ref: '#/components/parameters/trace-indicator'
+      - $ref: '#/components/parameters/customer-journey'
+      - $ref: '#/components/parameters/mountName'
+      - $ref: '#/components/parameters/fields'
+    get:
+      operationId: getCachedBackupAndRestorePac
+      summary: 'Provides BackupAndRestorePac from cache'
+      tags:
+        - IndividualServices
+      security:
+        - apiKeyAuth: []
+      responses:
+        '200':
+          description: 'BackupAndRestorePac provided from cache'
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - backup-and-restore-1-0:backup-and-restore-pac
+                properties:
+                  backup-and-restore-1-0:backup-and-restore-pac:
+                    $ref: '#/components/schemas/backup-and-restore-pac'
+                example:
+                  backup-and-restore-1-0:backup-and-restore-pac:
+                    backup-and-restore-capability:
+                      separate-activation-is-required: true
+                      confirm-restoration-is-required: true
+                    backup-and-restore-configuration:
+                      length-of-confirmation-period: 60
+                      length-of-validation-period: 30
+                    backup-and-restore-status:
+                      backup-operation-status: 'backup-and-restore-1-0:BACKUP_STATUS_TYPE_IDLE'
+                      restore-operation-status: 'backup-and-restore-1-0:RESTORE_STATUS_TYPE_IDLE'
+                      ready-for-starting-new-operation: 'backup-and-restore-1-0:READINESS_STATUS_TYPE_READY'
+          headers:
+            x-correlator:
+              $ref: '#/components/headers/x-correlator'
+            exec-time:
+              $ref: '#/components/headers/exec-time'
+            backend-time:
+              $ref: '#/components/headers/backend-time'
+            life-cycle-state:
+              $ref: '#/components/headers/life-cycle-state'
+
+# Completeness of RPC
+  # /core-model-1-4:network-control-domain=live/control-construct=305250001/backup-and-restore-1-0:backup-system:
+  /core-model-1-4:network-control-domain=live/control-construct=305250001/backup-and-restore-1-0%3Abackup-system:
+    parameters:
+      - $ref: '#/components/parameters/user'
+      - $ref: '#/components/parameters/originator'
+      - $ref: '#/components/parameters/x-correlator'
+      - $ref: '#/components/parameters/trace-indicator'
+      - $ref: '#/components/parameters/customer-journey'
+      - $ref: '#/components/parameters/mountName'
+    post:
+      operationId: postBackupSystem
+      summary: 'Uploads a backup file'
+      tags:
+        - IndividualServices
+      security:
+        - apiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - input
+              properties:
+                input:
+                  type: object
+                  required:
+                    - filename
+                    - destination-uri
+                    - force-upload
+                  properties:
+                    filename:
+                      type: string
+                    destination-uri:
+                      type: string
+                    username-at-file-server:
+                      type: string
+                    password-at-file-server:
+                      type: string
+                    ssh-key:
+                      type: string
+                    force-upload:
+                      type: boolean
+              example:
+                input:
+                  filename: '305250001_2010-11-20T14:00'
+                  destination-uri: 'sftp://127.0.0.1:22/backup/mw/305'
+                  username-at-file-server: 'admin'
+                  password-at-file-server: 'password123'
+                  force-upload: true
+      responses:
+        '204':
+          description: 'Backup file uploaded'
+          headers:
+            x-correlator:
+              $ref: '#/components/headers/x-correlator'
+            exec-time:
+              $ref: '#/components/headers/exec-time'
+            backend-time:
+              $ref: '#/components/headers/backend-time'
+            life-cycle-state:
+              $ref: '#/components/headers/life-cycle-state'
+  # /core-model-1-4:network-control-domain=live/control-construct=305250001/backup-and-restore-1-0:restore-system:
+  /core-model-1-4:network-control-domain=live/control-construct=305250001/backup-and-restore-1-0%3Arestore-system:
+    parameters:
+      - $ref: '#/components/parameters/user'
+      - $ref: '#/components/parameters/originator'
+      - $ref: '#/components/parameters/x-correlator'
+      - $ref: '#/components/parameters/trace-indicator'
+      - $ref: '#/components/parameters/customer-journey'
+      - $ref: '#/components/parameters/mountName'
+    post:
+      operationId: postRestoreSystem
+      summary: 'Downloads a backup file'
+      tags:
+        - IndividualServices
+      security:
+        - apiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - input
+              properties:
+                input:
+                  type: object
+                  required:
+                    - filename
+                    - source-uri
+                  properties:
+                    filename:
+                      type: string
+                    source-uri:
+                      type: string
+                    username-at-file-server:
+                      type: string
+                    password-at-file-server:
+                      type: string
+                    ssh-key:
+                      type: string
+              example:
+                input:
+                  filename: '305250001_2010-11-20T14:00'
+                  source-uri: 'sftp://127.0.0.1:22/tn_backup_configuration/mw/305'
+                  username-at-file-server: 'admin'
+                  password-at-file-server: 'password123'
+      responses:
+        '204':
+          description: 'Backup file downloaded'
+          headers:
+            x-correlator:
+              $ref: '#/components/headers/x-correlator'
+            exec-time:
+              $ref: '#/components/headers/exec-time'
+            backend-time:
+              $ref: '#/components/headers/backend-time'
+            life-cycle-state:
+              $ref: '#/components/headers/life-cycle-state'
+  # /core-model-1-4:network-control-domain=live/control-construct=305250001/backup-and-restore-1-0:apply-restored-configuration:
+  /core-model-1-4:network-control-domain=live/control-construct=305250001/backup-and-restore-1-0%3Aapply-restored-configuration:
+    parameters:
+      - $ref: '#/components/parameters/user'
+      - $ref: '#/components/parameters/originator'
+      - $ref: '#/components/parameters/x-correlator'
+      - $ref: '#/components/parameters/trace-indicator'
+      - $ref: '#/components/parameters/customer-journey'
+      - $ref: '#/components/parameters/mountName'
+    post:
+      operationId: postApplyRestoredConfiguration
+      summary: 'Activates restored configuration'
+      tags:
+        - IndividualServices
+      security:
+        - apiKeyAuth: []
+      responses:
+        '204':
+          description: 'Restored configuration activated'
+          headers:
+            x-correlator:
+              $ref: '#/components/headers/x-correlator'
+            exec-time:
+              $ref: '#/components/headers/exec-time'
+            backend-time:
+              $ref: '#/components/headers/backend-time'
+            life-cycle-state:
+              $ref: '#/components/headers/life-cycle-state'
+  # /core-model-1-4:network-control-domain=live/control-construct=305250001/backup-and-restore-1-0:confirm-restoration:
+  /core-model-1-4:network-control-domain=live/control-construct=305250001/backup-and-restore-1-0%3Aconfirm-restoration:
+    parameters:
+      - $ref: '#/components/parameters/user'
+      - $ref: '#/components/parameters/originator'
+      - $ref: '#/components/parameters/x-correlator'
+      - $ref: '#/components/parameters/trace-indicator'
+      - $ref: '#/components/parameters/customer-journey'
+      - $ref: '#/components/parameters/mountName'
+    post:
+      operationId: postConfirmRestoration
+      summary: 'Confirms Restoration'
+      tags:
+        - IndividualServices
+      security:
+        - apiKeyAuth: []
+      responses:
+        '204':
+          description: 'Restoration confirmed'
+          headers:
+            x-correlator:
+              $ref: '#/components/headers/x-correlator'
+            exec-time:
+              $ref: '#/components/headers/exec-time'
+            backend-time:
+              $ref: '#/components/headers/backend-time'
+            life-cycle-state:
+              $ref: '#/components/headers/life-cycle-state'
+  # /core-model-1-4:network-control-domain=live/control-construct=305250001/backup-and-restore-1-0:abort-backup-operation:
+  /core-model-1-4:network-control-domain=live/control-construct=305250001/backup-and-restore-1-0%3Aabort-backup-operation:
+    parameters:
+      - $ref: '#/components/parameters/user'
+      - $ref: '#/components/parameters/originator'
+      - $ref: '#/components/parameters/x-correlator'
+      - $ref: '#/components/parameters/trace-indicator'
+      - $ref: '#/components/parameters/customer-journey'
+      - $ref: '#/components/parameters/mountName'
+    post:
+      operationId: postAbortBackupOperation
+      summary: 'Aborts backup'
+      tags:
+        - IndividualServices
+      security:
+        - apiKeyAuth: []
+      responses:
+        '204':
+          description: 'Backup aborted'
+          headers:
+            x-correlator:
+              $ref: '#/components/headers/x-correlator'
+            exec-time:
+              $ref: '#/components/headers/exec-time'
+            backend-time:
+              $ref: '#/components/headers/backend-time'
+            life-cycle-state:
+              $ref: '#/components/headers/life-cycle-state'
+  # /core-model-1-4:network-control-domain=live/control-construct=305250001/backup-and-restore-1-0:abort-restore-operation:
+  /core-model-1-4:network-control-domain=live/control-construct=305250001/backup-and-restore-1-0%3Aabort-restore-operation:
+    parameters:
+      - $ref: '#/components/parameters/user'
+      - $ref: '#/components/parameters/originator'
+      - $ref: '#/components/parameters/x-correlator'
+      - $ref: '#/components/parameters/trace-indicator'
+      - $ref: '#/components/parameters/customer-journey'
+      - $ref: '#/components/parameters/mountName'
+    post:
+      operationId: postAbortRestoreOperation
+      summary: 'Aborts Restoration'
+      tags:
+        - IndividualServices
+      security:
+        - apiKeyAuth: []
+      responses:
+        '204':
+          description: 'Restoration aborted'
+          headers:
+            x-correlator:
+              $ref: '#/components/headers/x-correlator'
+            exec-time:
+              $ref: '#/components/headers/exec-time'
+            backend-time:
+              $ref: '#/components/headers/backend-time'
+            life-cycle-state:
+              $ref: '#/components/headers/life-cycle-state'
+  # /core-model-1-4:network-control-domain=live/control-construct=305250001/backup-and-restore-1-0:roll-back-operation:
+  /core-model-1-4:network-control-domain=live/control-construct=305250001/backup-and-restore-1-0%3Aroll-back-operation:
+    parameters:
+      - $ref: '#/components/parameters/user'
+      - $ref: '#/components/parameters/originator'
+      - $ref: '#/components/parameters/x-correlator'
+      - $ref: '#/components/parameters/trace-indicator'
+      - $ref: '#/components/parameters/customer-journey'
+      - $ref: '#/components/parameters/mountName'
+    post:
+      operationId: postRollBackOperation
+      summary: 'Roll back of entire restoration'
+      tags:
+        - IndividualServices
+      security:
+        - apiKeyAuth: []
+      responses:
+        '204':
+          description: 'Restoration rolled back'
+          headers:
+            x-correlator:
+              $ref: '#/components/headers/x-correlator'
+            exec-time:
+              $ref: '#/components/headers/exec-time'
+            backend-time:
+              $ref: '#/components/headers/backend-time'
+            life-cycle-state:
+              $ref: '#/components/headers/life-cycle-state'
+
+
+#
+# At Controller (copy from above, different paths, less parameters, basicAuth, no headers)
+# =============
+#
+# Completeness of GET 200
+  /rests/data/network-topology:network-topology/topology=topology-netconf/node=305250001/yang-ext:mount/core-model-1-4:control-construct/backup-and-restore-1-0:backup-and-restore-pac:
+    parameters:
+      - $ref: '#/components/parameters/mountName'
+      - $ref: '#/components/parameters/fields'
+    get:
+      operationId: getBackupAndRestorePac
+      summary: 'Provides BackupAndRestorePac from device'
+      tags:
+        - IndividualServices
+      security:
+        - apiKeyAuth: []
+      responses:
+        '200':
+          description: 'BackupAndRestorePac provided from device'
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - backup-and-restore-1-0:backup-and-restore-pac
+                properties:
+                  backup-and-restore-1-0:backup-and-restore-pac:
+                    $ref: '#/components/schemas/backup-and-restore-pac'
+                example:
+                  backup-and-restore-1-0:backup-and-restore-pac:
+                    backup-and-restore-capability:
+                      separate-activation-is-required: true
+                      confirm-restoration-is-required: true
+                    backup-and-restore-configuration:
+                      length-of-confirmation-period: 60
+                      length-of-validation-period: 30
+                    backup-and-restore-status:
+                      backup-operation-status: 'backup-and-restore-1-0:BACKUP_STATUS_TYPE_IDLE'
+                      restore-operation-status: 'backup-and-restore-1-0:RESTORE_STATUS_TYPE_IDLE'
+                      ready-for-starting-new-operation: 'backup-and-restore-1-0:READINESS_STATUS_TYPE_READY'
+
+# Completeness of RPC
+  # /rests/operations/network-topology:network-topology/topology=topology-netconf/node=305250001/yang-ext:mount/backup-and-restore-1-0:backup-system:
+  /rests/operations/network-topology:network-topology/topology=topology-netconf/node=305250001/yang-ext:mount/backup-and-restore-1-0%3Abackup-system:
+    parameters:
+      - $ref: '#/components/parameters/mountName'
+    post:
+      operationId: postBackupSystem
+      summary: 'Uploads a backup file'
+      tags:
+        - IndividualServices
+      security:
+        - apiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - input
+              properties:
+                input:
+                  type: object
+                  required:
+                    - filename
+                    - destination-uri
+                    - force-upload
+                  properties:
+                    filename:
+                      type: string
+                    destination-uri:
+                      type: string
+                    username-at-file-server:
+                      type: string
+                    password-at-file-server:
+                      type: string
+                    ssh-key:
+                      type: string
+                    force-upload:
+                      type: boolean
+              example:
+                input:
+                  filename: '305250001_2010-11-20T14:00'
+                  destination-uri: 'sftp://127.0.0.1:22/backup/mw/305'
+                  username-at-file-server: 'admin'
+                  password-at-file-server: 'password123'
+                  force-upload: true
+      responses:
+        '204':
+          description: 'Backup file uploaded'
+  # /rests/operations/network-topology:network-topology/topology=topology-netconf/node=305250001/yang-ext:mount/backup-and-restore-1-0:restore-system:
+  /rests/operations/network-topology:network-topology/topology=topology-netconf/node=305250001/yang-ext:mount/backup-and-restore-1-0%3Arestore-system:
+    parameters:
+      - $ref: '#/components/parameters/mountName'
+    post:
+      operationId: postRestoreSystem
+      summary: 'Downloads a backup file'
+      tags:
+        - IndividualServices
+      security:
+        - apiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - input
+              properties:
+                input:
+                  type: object
+                  required:
+                    - filename
+                    - source-uri
+                  properties:
+                    filename:
+                      type: string
+                    source-uri:
+                      type: string
+                    username-at-file-server:
+                      type: string
+                    password-at-file-server:
+                      type: string
+                    ssh-key:
+                      type: string
+              example:
+                input:
+                  filename: '305250001_2010-11-20T14:00'
+                  source-uri: 'sftp://127.0.0.1:22/backup/mw/305'
+                  username-at-file-server: 'admin'
+                  password-at-file-server: 'password123'
+      responses:
+        '204':
+          description: 'Backup file downloaded'
+  # /rests/operations/network-topology:network-topology/topology=topology-netconf/node=305250001/yang-ext:mount/backup-and-restore-1-0:apply-restored-configuration:
+  /rests/operations/network-topology:network-topology/topology=topology-netconf/node=305250001/yang-ext:mount/backup-and-restore-1-0%3Aapply-restored-configuration:
+    parameters:
+      - $ref: '#/components/parameters/mountName'
+    post:
+      operationId: postApplyRestoredConfiguration
+      summary: 'Activates restored configuration'
+      tags:
+        - IndividualServices
+      security:
+        - apiKeyAuth: []
+      responses:
+        '204':
+          description: 'Restored configuration activated'
+  # /rests/operations/network-topology:network-topology/topology=topology-netconf/node=305250001/yang-ext:mount/backup-and-restore-1-0:confirm-restoration:
+  /rests/operations/network-topology:network-topology/topology=topology-netconf/node=305250001/yang-ext:mount/backup-and-restore-1-0%3Aconfirm-restoration:
+    parameters:
+      - $ref: '#/components/parameters/mountName'
+    post:
+      operationId: postConfirmRestoration
+      summary: 'Confirms Restoration'
+      tags:
+        - IndividualServices
+      security:
+        - apiKeyAuth: []
+      responses:
+        '204':
+          description: 'Restoration confirmed'
+  # /rests/operations/network-topology:network-topology/topology=topology-netconf/node=305250001/yang-ext:mount/backup-and-restore-1-0:abort-backup-operation:
+  /rests/operations/network-topology:network-topology/topology=topology-netconf/node=305250001/yang-ext:mount/backup-and-restore-1-0%3Aabort-backup-operation:
+    parameters:
+      - $ref: '#/components/parameters/mountName'
+    post:
+      operationId: postAbortBackupOperation
+      summary: 'Aborts backup'
+      tags:
+        - IndividualServices
+      security:
+        - apiKeyAuth: []
+      responses:
+        '204':
+          description: 'Backup aborted'
+  # /rests/operations/network-topology:network-topology/topology=topology-netconf/node=305250001/yang-ext:mount/backup-and-restore-1-0:abort-restore-operation:
+  /rests/operations/network-topology:network-topology/topology=topology-netconf/node=305250001/yang-ext:mount/backup-and-restore-1-0%3Aabort-restore-operation:
+    parameters:
+      - $ref: '#/components/parameters/mountName'
+    post:
+      operationId: postAbortRestoreOperation
+      summary: 'Aborts Restoration'
+      tags:
+        - IndividualServices
+      security:
+        - apiKeyAuth: []
+      responses:
+        '204':
+          description: 'Restoration aborted'
+  # /rests/operations/network-topology:network-topology/topology=topology-netconf/node=305250001/yang-ext:mount/backup-and-restore-1-0:roll-back-operation:
+  /rests/operations/network-topology:network-topology/topology=topology-netconf/node=305250001/yang-ext:mount/backup-and-restore-1-0%3Aroll-back-operation:
+    parameters:
+      - $ref: '#/components/parameters/mountName'
+    post:
+      operationId: postRollBackOperation
+      summary: 'Roll back of entire restoration'
+      tags:
+        - IndividualServices
+      security:
+        - apiKeyAuth: []
+      responses:
+        '204':
+          description: 'Restoration rolled back'
+
+
+########################################################################################################################
+#   Generic Paths
+########################################################################################################################
+  /generic/core-model-1-4:network-control-domain=cache/control-construct={mountName}/backup-and-restore-1-0:backup-and-restore-pac:
+    parameters:
+      - $ref: '#/components/parameters/user'
+      - $ref: '#/components/parameters/originator'
+      - $ref: '#/components/parameters/x-correlator'
+      - $ref: '#/components/parameters/trace-indicator'
+      - $ref: '#/components/parameters/customer-journey'
+      - $ref: '#/components/parameters/mountName'
+      - $ref: '#/components/parameters/fields'
+    get:
+      operationId: getCachedBackupAndRestorePac
+      summary: 'Provides BackupAndRestorePac from cache'
+      tags:
+        - IndividualServices
+      security:
+        - apiKeyAuth: []
+      responses:
+        '200':
+          description: 'BackupAndRestorePac provided from cache'
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - backup-and-restore-1-0:backup-and-restore-pac
+                properties:
+                  backup-and-restore-1-0:backup-and-restore-pac:
+                    $ref: '#/components/schemas/backup-and-restore-pac'
+          headers:
+            x-correlator:
+              $ref: '#/components/headers/x-correlator'
+            exec-time:
+              $ref: '#/components/headers/exec-time'
+            backend-time:
+              $ref: '#/components/headers/backend-time'
+            life-cycle-state:
+              $ref: '#/components/headers/life-cycle-state'
+        '4XX':
+          $ref: '#/components/responses/responseForErroredServiceRequests'
+        '500':
+          $ref: '#/components/responses/responseForErroredServiceRequests'
+        default:
+          $ref: '#/components/responses/responseForErroredServiceRequests'
+
+  /generic/core-model-1-4:network-control-domain=live/control-construct={mountName}/backup-and-restore-1-0:backup-system:
+    parameters:
+      - $ref: '#/components/parameters/user'
+      - $ref: '#/components/parameters/originator'
+      - $ref: '#/components/parameters/x-correlator'
+      - $ref: '#/components/parameters/trace-indicator'
+      - $ref: '#/components/parameters/customer-journey'
+      - $ref: '#/components/parameters/mountName'
+    post:
+      operationId: postBackupSystem
+      summary: 'Uploads a backup file'
+      tags:
+        - IndividualServices
+      security:
+        - apiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - input
+              properties:
+                input:
+                  type: object
+                  required:
+                    - filename
+                    - destination-uri
+                    - force-upload
+                  properties:
+                    filename:
+                      type: string
+                    destination-uri:
+                      type: string
+                    username-at-file-server:
+                      type: string
+                    password-at-file-server:
+                      type: string
+                    ssh-key:
+                      type: string
+                    force-upload:
+                      type: boolean
+              example:
+                input:
+                  filename: 'string'
+                  destination-uri: 'string'
+                  username-at-file-server: 'string'
+                  password-at-file-server: 'string'
+                  ssh-key: 'string'
+                  force-upload: true
+      responses:
+        '204':
+          description: 'Backup file uploaded'
+          headers:
+            x-correlator:
+              $ref: '#/components/headers/x-correlator'
+            exec-time:
+              $ref: '#/components/headers/exec-time'
+            backend-time:
+              $ref: '#/components/headers/backend-time'
+            life-cycle-state:
+              $ref: '#/components/headers/life-cycle-state'
+        '4XX':
+          $ref: '#/components/responses/responseForErroredServiceRequests'
+        '500':
+          $ref: '#/components/responses/responseForErroredServiceRequests'
+        default:
+          $ref: '#/components/responses/responseForErroredServiceRequests'
+  /generic/core-model-1-4:network-control-domain=live/control-construct={mountName}/backup-and-restore-1-0:restore-system:
+    parameters:
+      - $ref: '#/components/parameters/user'
+      - $ref: '#/components/parameters/originator'
+      - $ref: '#/components/parameters/x-correlator'
+      - $ref: '#/components/parameters/trace-indicator'
+      - $ref: '#/components/parameters/customer-journey'
+      - $ref: '#/components/parameters/mountName'
+    post:
+      operationId: postRestoreSystem
+      summary: 'Downloads a backup file'
+      tags:
+        - IndividualServices
+      security:
+        - apiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - input
+              properties:
+                input:
+                  type: object
+                  required:
+                    - filename
+                    - source-uri
+                  properties:
+                    filename:
+                      type: string
+                    source-uri:
+                      type: string
+                    username-at-file-server:
+                      type: string
+                    password-at-file-server:
+                      type: string
+                    ssh-key:
+                      type: string
+              example:
+                input:
+                  filename: 'string'
+                  source-uri: 'string'
+                  username-at-file-server: 'string'
+                  password-at-file-server: 'string'
+                  ssh-key: 'string'
+      responses:
+        '204':
+          description: 'Backup file downloaded'
+          headers:
+            x-correlator:
+              $ref: '#/components/headers/x-correlator'
+            exec-time:
+              $ref: '#/components/headers/exec-time'
+            backend-time:
+              $ref: '#/components/headers/backend-time'
+            life-cycle-state:
+              $ref: '#/components/headers/life-cycle-state'
+        '4XX':
+          $ref: '#/components/responses/responseForErroredServiceRequests'
+        '500':
+          $ref: '#/components/responses/responseForErroredServiceRequests'
+        default:
+          $ref: '#/components/responses/responseForErroredServiceRequests'
+  /generic/core-model-1-4:network-control-domain=live/control-construct={mountName}/backup-and-restore-1-0:apply-restored-configuration:
+    parameters:
+      - $ref: '#/components/parameters/user'
+      - $ref: '#/components/parameters/originator'
+      - $ref: '#/components/parameters/x-correlator'
+      - $ref: '#/components/parameters/trace-indicator'
+      - $ref: '#/components/parameters/customer-journey'
+      - $ref: '#/components/parameters/mountName'
+    post:
+      operationId: postApplyRestoredConfiguration
+      summary: 'Activates restored configuration'
+      tags:
+        - IndividualServices
+      security:
+        - apiKeyAuth: []
+      responses:
+        '204':
+          description: 'Restored configuration activated'
+          headers:
+            x-correlator:
+              $ref: '#/components/headers/x-correlator'
+            exec-time:
+              $ref: '#/components/headers/exec-time'
+            backend-time:
+              $ref: '#/components/headers/backend-time'
+            life-cycle-state:
+              $ref: '#/components/headers/life-cycle-state'
+        '4XX':
+          $ref: '#/components/responses/responseForErroredServiceRequests'
+        '500':
+          $ref: '#/components/responses/responseForErroredServiceRequests'
+        default:
+          $ref: '#/components/responses/responseForErroredServiceRequests'
+  /generic/core-model-1-4:network-control-domain=live/control-construct={mountName}/backup-and-restore-1-0:confirm-restoration:
+    parameters:
+      - $ref: '#/components/parameters/user'
+      - $ref: '#/components/parameters/originator'
+      - $ref: '#/components/parameters/x-correlator'
+      - $ref: '#/components/parameters/trace-indicator'
+      - $ref: '#/components/parameters/customer-journey'
+      - $ref: '#/components/parameters/mountName'
+    post:
+      operationId: postConfirmRestoration
+      summary: 'Confirms Restoration'
+      tags:
+        - IndividualServices
+      security:
+        - apiKeyAuth: []
+      responses:
+        '204':
+          description: 'Restoration confirmed'
+          headers:
+            x-correlator:
+              $ref: '#/components/headers/x-correlator'
+            exec-time:
+              $ref: '#/components/headers/exec-time'
+            backend-time:
+              $ref: '#/components/headers/backend-time'
+            life-cycle-state:
+              $ref: '#/components/headers/life-cycle-state'
+        '4XX':
+          $ref: '#/components/responses/responseForErroredServiceRequests'
+        '500':
+          $ref: '#/components/responses/responseForErroredServiceRequests'
+        default:
+          $ref: '#/components/responses/responseForErroredServiceRequests'
+  /generic/core-model-1-4:network-control-domain=live/control-construct={mountName}/backup-and-restore-1-0:abort-backup-operation:
+    parameters:
+      - $ref: '#/components/parameters/user'
+      - $ref: '#/components/parameters/originator'
+      - $ref: '#/components/parameters/x-correlator'
+      - $ref: '#/components/parameters/trace-indicator'
+      - $ref: '#/components/parameters/customer-journey'
+      - $ref: '#/components/parameters/mountName'
+    post:
+      operationId: postAbortBackupOperation
+      summary: 'Aborts backup'
+      tags:
+        - IndividualServices
+      security:
+        - apiKeyAuth: []
+      responses:
+        '204':
+          description: 'Backup aborted'
+          headers:
+            x-correlator:
+              $ref: '#/components/headers/x-correlator'
+            exec-time:
+              $ref: '#/components/headers/exec-time'
+            backend-time:
+              $ref: '#/components/headers/backend-time'
+            life-cycle-state:
+              $ref: '#/components/headers/life-cycle-state'
+        '4XX':
+          $ref: '#/components/responses/responseForErroredServiceRequests'
+        '500':
+          $ref: '#/components/responses/responseForErroredServiceRequests'
+        default:
+          $ref: '#/components/responses/responseForErroredServiceRequests'
+  /generic/core-model-1-4:network-control-domain=live/control-construct={mountName}/backup-and-restore-1-0:abort-restore-operation:
+    parameters:
+      - $ref: '#/components/parameters/user'
+      - $ref: '#/components/parameters/originator'
+      - $ref: '#/components/parameters/x-correlator'
+      - $ref: '#/components/parameters/trace-indicator'
+      - $ref: '#/components/parameters/customer-journey'
+      - $ref: '#/components/parameters/mountName'
+    post:
+      operationId: postAbortRestoreOperation
+      summary: 'Aborts Restoration'
+      tags:
+        - IndividualServices
+      security:
+        - apiKeyAuth: []
+      responses:
+        '204':
+          description: 'Restoration aborted'
+          headers:
+            x-correlator:
+              $ref: '#/components/headers/x-correlator'
+            exec-time:
+              $ref: '#/components/headers/exec-time'
+            backend-time:
+              $ref: '#/components/headers/backend-time'
+            life-cycle-state:
+              $ref: '#/components/headers/life-cycle-state'
+        '4XX':
+          $ref: '#/components/responses/responseForErroredServiceRequests'
+        '500':
+          $ref: '#/components/responses/responseForErroredServiceRequests'
+        default:
+          $ref: '#/components/responses/responseForErroredServiceRequests'
+  /generic/core-model-1-4:network-control-domain=live/control-construct={mountName}/backup-and-restore-1-0:roll-back-operation:
+    parameters:
+      - $ref: '#/components/parameters/user'
+      - $ref: '#/components/parameters/originator'
+      - $ref: '#/components/parameters/x-correlator'
+      - $ref: '#/components/parameters/trace-indicator'
+      - $ref: '#/components/parameters/customer-journey'
+      - $ref: '#/components/parameters/mountName'
+    post:
+      operationId: postRollBackOperation
+      summary: 'Roll back of entire restoration'
+      tags:
+        - IndividualServices
+      security:
+        - apiKeyAuth: []
+      responses:
+        '204':
+          description: 'Restoration rolled back'
+          headers:
+            x-correlator:
+              $ref: '#/components/headers/x-correlator'
+            exec-time:
+              $ref: '#/components/headers/exec-time'
+            backend-time:
+              $ref: '#/components/headers/backend-time'
+            life-cycle-state:
+              $ref: '#/components/headers/life-cycle-state'
+        '4XX':
+          $ref: '#/components/responses/responseForErroredServiceRequests'
+        '500':
+          $ref: '#/components/responses/responseForErroredServiceRequests'
+        default:
+          $ref: '#/components/responses/responseForErroredServiceRequests'
+
+
+########################################################################################################################
+#   Common Components
+########################################################################################################################
+components:
+  parameters:
+    user:
+      name: user
+      in: header
+      required: true
+      schema:
+        type: string
+        example: 'User Name'
+      description: 'User identifier from the system starting the service call'
+    originator:
+      name: originator
+      in: header
+      required: true
+      schema:
+        type: string
+        minLength: 3
+        example: 'Resolver'
+      description: >
+        'Identification for the system consuming the API, as defined in
+         [/core-model-1-4:control-construct/logical-termination-point={uuid}/layer-protocol=0/http-client-interface-1-0:http-client-interface-pac/http-client-interface-configuration/application-name]'
+    x-correlator:
+      name: x-correlator
+      in: header
+      required: true
+      schema:
+        type: string
+        pattern: '^[0-9A-Fa-f]{8}(?:-[0-9A-Fa-f]{4}){3}-[0-9A-Fa-f]{12}$'
+        description: 'Empty string accepted from external applications.'
+        example: '550e8400-e29b-11d4-a716-446655440000'
+      description: 'UUID for the service execution flow that allows to correlate requests and responses'
+    trace-indicator:
+      name: trace-indicator
+      in: header
+      required: true
+      schema:
+        type: string
+        pattern: '^([0-9]+)(\.([0-9]+))*$'
+        description: 'Empty string accepted from external applications.'
+        example: '1.3.1'
+      description: 'Sequence of request numbers along the flow'
+    customer-journey:
+      name: customer-journey
+      in: header
+      required: true
+      schema:
+        type: string
+        example: 'Unknown value'
+      description: 'Holds information supporting customer’s journey to which the execution applies'
+    mountName:
+      name: mountName
+      in: path
+      required: true
+      schema:
+        type: string
+        example: '222250001'
+      description: 'The mountName of the device that is addressed by the request'
+    uuid:
+      name: uuid
+      in: path
+      required: true
+      schema:
+        type: string
+        example: 'LTP-MWPS-TTP-1-1'
+      description: 'Instance identifier that is unique within the device'
+    uuid1:
+      name: uuid1
+      in: path
+      required: true
+      schema:
+        type: string
+        example: 'LTP-MWPS-TTP-1-1'
+      description: 'Another instance identifier that is unique within the device'
+    localId:
+      name: localId
+      in: path
+      required: true
+      schema:
+        type: string
+        example: 'LP-MWPS-TTP-1-1'
+      description: 'Instance identifier that is unique within its list'
+    fields:
+      name: fields
+      in: query
+      required: false
+      schema:
+        type: string
+        example: 'node(node-id;netconf-node-topology:connection-status)'
+      description: 'Query parameter to filter ressources according to RFC8040 fields filter spec'
+  responses:
+    responseForErroredServiceRequests:
+      description: 'Response in case of errored service requests'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorDescription'
+      headers:
+        x-correlator:
+          schema:
+            type: string
+            pattern: '^[0-9A-Fa-f]{8}(?:-[0-9A-Fa-f]{4}){3}-[0-9A-Fa-f]{12}$'
+            example: '550e8400-e29b-11d4-a716-446655440000'
+          description: 'UUID for the service execution flow that allows to correlate requests and responses. Its value must be identical at the response compared with its corresponding request'
+        exec-time:
+          schema:
+            type: integer
+            example: 1100
+          description: 'Value written by the service provider, reporting the total elapsed time for the execution, including all the additional processing needed to retrieve the data from the backend service. Expressed in milliseconds'
+        backend-time:
+          schema:
+            type: integer
+            example: 850
+          description: 'Value written by the service provider, reporting the elapsed time for data retrieval from the backend (service invocation, database access…). Expressed in milliseconds'
+    responseForErroredOamRequests:
+      description: 'Response in case of errored OaM requests'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/errorDescription'
+  headers:
+    x-correlator:
+      schema:
+        type: string
+        example: '550e8400-e29b-11d4-a716-446655440000'
+      description: 'UUID for the service execution flow that allows to correlate requests and responses. Its value must be identical at the response compared with its corresponding request'
+    exec-time:
+      schema:
+        type: integer
+        example: 1100
+      description: 'Value written by the service provider, reporting the total elapsed time for the execution, including all the additional processing needed to retrieve the data from the backend service. Expressed in milliseconds'
+    backend-time:
+      schema:
+        type: integer
+        example: 850
+      description: 'Value written by the service provider, reporting the elapsed time for data retrieval from the backend (service invocation, database access…). Expressed in milliseconds'
+    life-cycle-state:
+      schema:
+        type: string
+        enum:
+          - 'EXPERIMENTAL'
+          - 'OPERATIONAL'
+          - 'DEPRECATED'
+          - 'OBSOLETE'
+          - 'UNKNOWN'
+          - 'NOT_YET_DEFINED'
+        example: 'EXPERIMENTAL'
+  schemas:
+    errorDescription:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+
+    backup-and-restore-pac:
+      type: object
+      required:
+        - backup-and-restore-capability
+        - backup-and-restore-configuration
+        - backup-and-restore-status
+      properties:
+        backup-and-restore-capability:
+          type: object
+          required:
+            - separate-activation-is-required
+            - confirm-restoration-is-required
+          properties:
+            separate-activation-is-required:
+              type: boolean
+            confirm-restoration-is-required:
+              type: boolean
+        backup-and-restore-configuration:
+          type: object
+          required:
+            - length-of-confirmation-period
+            - length-of-validation-period
+          properties:
+            length-of-confirmation-period:
+              type: integer
+              format: int16
+            length-of-validation-period:
+              type: integer
+              format: int16
+        backup-and-restore-status:
+          type: object
+          required:
+            - backup-operation-status
+            - restore-operation-status
+            - ready-for-starting-new-operation
+          properties:
+            backup-operation-status:
+              type: string
+              enum:
+                - 'backup-and-restore-1-0:BACKUP_STATUS_TYPE_IDLE'
+                - 'backup-and-restore-1-0:BACKUP_STATUS_TYPE_ONGOING'
+                - 'backup-and-restore-1-0:BACKUP_STATUS_TYPE_COMPLETED'
+                - 'backup-and-restore-1-0:BACKUP_STATUS_TYPE_FAILED'
+                - 'backup-and-restore-1-0:BACKUP_STATUS_TYPE_ABORTING'
+                - 'backup-and-restore-1-0:BACKUP_STATUS_TYPE_NOT_YET_DEFINED'
+            restore-operation-status:
+              type: string
+              enum:
+                - 'backup-and-restore-1-0:RESTORE_STATUS_TYPE_IDLE'
+                - 'backup-and-restore-1-0:RESTORE_STATUS_TYPE_DOWNLOADING'
+                - 'backup-and-restore-1-0:RESTORE_STATUS_TYPE_DOWNLOADED'
+                - 'backup-and-restore-1-0:RESTORE_STATUS_TYPE_RESTARTING'
+                - 'backup-and-restore-1-0:RESTORE_STATUS_TYPE_WAITING_FOR_CONFIRMATION'
+                - 'backup-and-restore-1-0:RESTORE_STATUS_TYPE_COMPLETED'
+                - 'backup-and-restore-1-0:RESTORE_STATUS_TYPE_FAILED'
+                - 'backup-and-restore-1-0:RESTORE_STATUS_TYPE_ABORTING'
+                - 'backup-and-restore-1-0:RESTORE_STATUS_TYPE_NOT_YET_DEFINED'
+            ready-for-starting-new-operation:
+              type: string
+              enum:
+                - 'backup-and-restore-1-0:READINESS_STATUS_TYPE_READY'
+                - 'backup-and-restore-1-0:READINESS_STATUS_TYPE_NOT_READY'
+                - 'backup-and-restore-1-0:READINESS_STATUS_TYPE_NOT_YET_DEFINED'
+
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: operation-key
+    basicAuth:
+      type: http
+      scheme: basic

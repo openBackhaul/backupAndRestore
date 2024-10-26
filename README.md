@@ -5,9 +5,6 @@
 ### Branch
 - 1.0.0-tsi.d.t : Model for the Transport SDN Introduction at Telefonica
 
-### Requirements Document
-- [BackUpAndRestoreRequirements](./BackUpAndRestoreRequirements.md)
-
 ### UML
 - [BackupAndRestore_1.0.0-tsi.231005.1145](./BackupAndRestore_1.0.0-tsi.231005.1145.zip)
 
@@ -21,16 +18,22 @@
 - Unconditioned augmentation statement.
 
 ### YANG File
-- [BackupAndRestore_1.0.0-tsi.231005.1145+yang.1](./BackupAndRestore_1.0.0-tsi.231005.1145+yang.1.zip)
+- [BackupAndRestore_1.0.0-tsi.231005.1145+yang.1](./BackupAndRestore_1.0.0-tsi.231005.1145+yang/backup-and-restore-1-0.yang)
+
+### Schema
+- [BackupAndRestore_1.0.0-tsi.231005.1145+schema](./BackupAndRestore_1.0.0-tsi.231005.1145+schema/)
+
+### Interface Simulator
+- [BackupAndRestore_1.0.0-tsi.231005.1145+simulator](./BackupAndRestore_1.0.0-tsi.231005.1145+simu/)
 
 ### Interface Validator
-- to be provided
+- [BackupAndRestore_1.0.0-tsi.231005.1145+validator](./BackupAndRestore_1.0.0-tsi.231005.1145+vali/)
 
 ### Publication
-- Candidate for ONF TR-532 v2.0
+- Published as a part of ONF TR-532 v2.0  
 
-### Aspired Model Classification
-- Live Network
+### Model Classification
+- Operational in Live Network
 
 ### Open Issue List
 - [backupAndRestore/issues](../../issues)
