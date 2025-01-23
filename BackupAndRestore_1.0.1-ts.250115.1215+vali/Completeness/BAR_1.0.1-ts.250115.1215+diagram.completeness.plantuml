@@ -1,0 +1,114 @@
+@startuml BAR_1.0.1-ts.250115.1215+diagram.completeness
+skinparam responseMessageBelowArrow true
+
+title
+BackupAndRestore_1.0.1-ts.250115.1215+testcase.completeness
+end title
+
+participant "Postman" as Postman
+participant "Data" as Data
+participant "Collection" as Collection
+
+participant "/backup-and-restore-pac" as BackupAndRestorePac
+
+participant "/backup-system" as BackupSystem
+participant "/restore-system" as RestoreSystem
+participant "/apply-restored-configuration" as ApplyRestoredConfiguration
+participant "/confirm-restoration" as ConfirmRestoration
+participant "/abort-backup-operation" as AbortBackupOperation
+participant "/abort-restore-operation" as AbortRestoreOperation
+participant "/roll-back-operation" as RollBackOperation
+
+group Preparation
+  Data --\\o Postman : {servers,\n   mountName,\n   kindOfReference,\n   suffixUrlEncodingIsRequired}
+  activate Postman
+  Postman --\\o Collection : {servers,\n   mountName,\n   kindOfReference,\n   suffixUrlEncodingIsRequired}
+end
+
+group /backup-and-restore-pac
+  Collection --\\o Postman : {mountName}
+  Postman -> BackupAndRestorePac : {mountName}
+  Postman <-- BackupAndRestorePac : {BackupAndRestorePac}
+  note right Postman
+    schema validation
+  end note
+  Postman --\\o Collection : {separateActivationIsRequired,\n confirmRestorationIsRequired,\n filenameConfigurationIsAvail,\n destinationIpConfigurationIsAvail}
+end
+
+group /backup-system
+  Collection --\\o Postman : {mountName}
+  Postman --\\o Collection : {backupLocation}
+  Postman -> BackupSystem : {mountName, backupLocation}
+  Postman <-- BackupSystem : {applied-destination-uri}
+  Postman --\\o Collection : {appliedDestinationUri}
+  note right Postman
+    schema validation
+  end note
+  Collection --\\o Postman : {backupLocation,\n filenameConfigurationIsAvail,\n destinationIpConfigurationIsAvail}
+  note over Postman #White
+    IF filenameConfigurationIsAvail==true
+      AND destinationIpConfigurationIsAvail==true
+  end note
+  note right Postman
+    check if applied-destination-uri==backupLocation
+  end note
+end
+
+group /restore-system
+  Collection --\\o Postman : {mountName, appliedDestinationUri}
+  Postman -> RestoreSystem : {mountName, appliedDestinationUri}
+  Postman <-- RestoreSystem : 204
+  note right Postman
+    204?
+  end note
+  Postman --\\o Collection : {responseCodeRestoreOperation}
+end
+
+group /apply-restored-configuration
+  Collection --\\o Postman : {mountName,\n separateActivationIsRequired,\n responseCodeRestoreOperation}
+  Postman -> ApplyRestoredConfiguration : {mountName}
+  Postman <-- ApplyRestoredConfiguration  : 204
+  note right Postman
+    204?
+  end note
+end
+
+group /confirm-restoration
+  Collection --\\o Postman : {mountName,\n confirmRestorationIsRequired,\n responseCodeRestoreOperation}
+  Postman -> ConfirmRestoration : {mountName}
+  Postman <-- ConfirmRestoration : 204
+  note right Postman
+    204?
+  end note
+end
+
+group /abort-backup-operation
+  Collection --\\o Postman : {mountName}
+  Postman -> AbortBackupOperation : {mountName}
+  Postman <-- AbortBackupOperation : 204
+  note right Postman
+    204?
+  end note
+end
+
+group /abort-restore-operation
+  Collection --\\o Postman : {mountName}
+  Postman -> AbortRestoreOperation : {mountName}
+  Postman <-- AbortRestoreOperation : 204
+  note right Postman
+    204?
+  end note
+end
+
+group /roll-back-operation
+  Collection --\\o Postman : {mountName,\n responseCodeRestoreOperation}
+  Postman -> RollBackOperation : {mountName}
+  Postman <-- RollBackOperation : 204
+  note right Postman
+    204?
+  end note
+end
+
+deactivate Postman
+
+@enduml
